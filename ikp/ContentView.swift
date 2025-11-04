@@ -14,6 +14,15 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+            Text("Hello, wordl!")
+            HStack {
+                Image(systemName: "person")
+                    .imageScale(.medium)
+                    .formStyle(.grouped)
+                Text("WelCome")
+                Image(systemName: "globe")
+                    .imageScale(.small)
+            }
         }
         .padding()
     }
