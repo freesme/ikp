@@ -40,6 +40,48 @@ struct ContentView: View {
             icon: "text.alignleft"
         ) {
             TextAlignmentView()
+        },
+        ExamplePage(
+            title: "布局演示",
+            description: "VStack、HStack 和 GeometryReader 布局示例",
+            icon: "square.grid.2x2"
+        ) {
+            LayoutDemoView()
+        },
+        ExamplePage(
+            title: "堆栈布局",
+            description: "VStack、HStack 和 Spacer 示例",
+            icon: "square.stack.3d.up"
+        ) {
+            StackDemoView()
+        },
+        ExamplePage(
+            title: "ZStack 演示",
+            description: "ZStack 层叠布局示例",
+            icon: "square.stack"
+        ) {
+            ZStackDemoView()
+        },
+        ExamplePage(
+            title: "滚动视图",
+            description: "ScrollView 和 ScrollViewReader 示例",
+            icon: "arrow.up.arrow.down"
+        ) {
+            ScrollDemoView()
+        },
+        ExamplePage(
+            title: "网格视图",
+            description: "LazyVGrid 和 LazyHGrid 网格布局示例",
+            icon: "grid"
+        ) {
+            LazyVHGridView()
+        },
+        ExamplePage(
+            title: "拖动手势",
+            description: "DragGesture 拖动手势交互示例",
+            icon: "hand.draw"
+        ) {
+            DragGestureView()
         }
     ]
     
