@@ -7,51 +7,67 @@
 
 import SwiftUI
 
+// 示例页面数据模型
+struct ExamplePage: Identifiable {
+    let id = UUID()
+    let title: String
+    let description: String
+    let icon: String
+    let destination: AnyView
+    
+    init<Content: View>(title: String, description: String, icon: String, @ViewBuilder destination: () -> Content) {
+        self.title = title
+        self.description = description
+        self.icon = icon
+        self.destination = AnyView(destination())
+    }
+}
+
 // 必须符合protocol View
 struct ContentView: View {
+    // 示例页面列表
+    let examplePages: [ExamplePage] = [
+        ExamplePage(
+            title: "文本示例",
+            description: "基础文本样式和格式化示例",
+            icon: "textformat"
+        ) {
+            TextExamplesView()
+        },
+        ExamplePage(
+            title: "文本对齐",
+            description: "文本对齐、间距和格式示例",
+            icon: "text.alignleft"
+        ) {
+            TextAlignmentView()
+        }
+    ]
+    
     var body: some View {
-        Text("Hello World")
-            .padding()  // 在视图之外需要一些额外空间？
         NavigationView {
             List {
-                Text("HelloWorld-1")
-                let context = """
-                    This is some longer text that is limited to three lines maximum, so anything more than that will cause the text to clip.
-                    """
-                Text(context)
-                    .lineLimit(3)
-                    .frame(width: 300)
-                    .padding()
-                    .lineSpacing(20)  // 调整行距
-
-                Text(
-                    "This is an extremely long string of text that will never fit even the widest of iOS devices even if the user has their Dynamic Type setting as small as is possible, so in theory it should definitely demonstrate truncationMode()."
-                )
-                .lineLimit(1)
-                //默认是从末尾删除文本并在其中显示省略号，但是您也可以根据字符串各部分重要性将省略号放在中间或开头。
-                .truncationMode(.middle)
-                // 字体大小
-                .font(.largeTitle)
-                // 颜色
-                .foregroundColor(Color.red)
-                .background(Color.gray)
-                .foregroundColor(Color(.white))
-
-                Text("The best laid plans")
-                    .padding()
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .font(.headline)
-                // 文本对齐方式 multilineTextAlignment
-                Text(
-                    "This is an extremely long text string that will never fit even the widest of phones without wrapping"
-                )
-                .font(.largeTitle)
-                .multilineTextAlignment(.leading)
-                .frame(width: 300)
-
+                Section(header: Text("SwiftUI 示例")) {
+                    ForEach(examplePages) { page in
+                        NavigationLink(destination: page.destination) {
+                            HStack {
+                                Image(systemName: page.icon)
+                                    .foregroundColor(.blue)
+                                    .frame(width: 30)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(page.title)
+                                        .font(.headline)
+                                    Text(page.description)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            .padding(.vertical, 4)
+                        }
+                    }
+                }
             }
-            .listStyle(SidebarListStyle())
+            .navigationTitle("SwiftUI 示例集合")
+            .listStyle(InsetGroupedListStyle())
         }
     }
 }
