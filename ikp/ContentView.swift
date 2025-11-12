@@ -14,8 +14,13 @@ struct ExamplePage: Identifiable {
     let description: String
     let icon: String
     let destination: AnyView
-    
-    init<Content: View>(title: String, description: String, icon: String, @ViewBuilder destination: () -> Content) {
+
+    init<Content: View>(
+        title: String,
+        description: String,
+        icon: String,
+        @ViewBuilder destination: () -> Content
+    ) {
         self.title = title
         self.description = description
         self.icon = icon
@@ -82,9 +87,9 @@ struct ContentView: View {
             icon: "hand.draw"
         ) {
             DragGestureView()
-        }
+        },
     ]
-    
+
     var body: some View {
         NavigationView {
             List {
