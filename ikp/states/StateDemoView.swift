@@ -11,6 +11,11 @@ struct StateDemoView: View {
 
     @State private var showDeatils = false
     @State private var name: String = "input"
+    @State private var showGreeting = true
+    @State private var celsius: Double = 0
+
+    var colors = ["Red", "Green", "Blue", "Tartan"]
+    @State private var selectedColor = "Red"
 
     var body: some View {
         ScrollView {
@@ -113,6 +118,7 @@ struct StateDemoView: View {
 
                     TextField("Enter your name", text: $name)
                         .textFieldStyle(.roundedBorder)
+                    //                        .textFieldStyle(RoundedBorderTextFieldStyle())
 
                     Text("Hello,\(name)!")
                     Text(verbatim: "Hello, \(name)!")
@@ -123,6 +129,35 @@ struct StateDemoView: View {
                 .padding()
                 .background(Color.pink.opacity(0.05))
                 .cornerRadius(12)
+                VStack {
+                    Toggle("show welcom message", isOn: $showGreeting)
+                        .toggleStyle(SwitchToggleStyle(tint: .red))
+
+                    if showGreeting {
+                        Text("Hello Greeting")
+                    }
+                }
+                .padding()
+                .background(Color.brown.opacity(0.05))
+                .cornerRadius(12)
+
+                VStack {
+                    Slider(value: $celsius, in: -100...100)
+                    Text(
+                        "\(celsius, specifier: "%.1f") Celsius is \(celsius * 9 / 5 + 32, specifier: "%.1f") Fahrenheit"
+                    )
+                    Text("value:\(celsius)")
+                }
+
+                HStack {
+                    Text("You selected: \(selectedColor)")
+                    Spacer()
+                    Picker("Please choose a color", selection: $selectedColor) {
+                        ForEach(colors, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                }
             }
             .padding()
         }

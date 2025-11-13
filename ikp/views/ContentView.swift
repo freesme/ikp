@@ -128,6 +128,14 @@ struct StateExamplesView: View {
         ) {
             StateDemoView()
         },
+        
+        ExamplePage(
+            title: "状态控制演示2",
+            description: "日期选择器、",
+            icon: "slider.horizontal.3"
+        ) {
+            StateDemo2View()
+        },
     ]
 
     var body: some View {
