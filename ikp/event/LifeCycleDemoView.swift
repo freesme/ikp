@@ -11,12 +11,12 @@ struct LifeCycleDemoView: View {
     @State private var logs: [LifecycleLog] = []
     @State private var appearCount: Int = 0
     @State private var disappearCount: Int = 0
-
+    @AppStorage("name") var name = "匿名"
     var body: some View {
         NavigationStack {
-            VStack(spacing: 24) {
+            VStack(alignment: .leading, spacing: 24) {
+                Text("UserDefaultName: \(name)")
                 summaryCard
-
                 NavigationLink {
                     DetailView { event in
                         recordLifecycle(viewName: "详情页", event: event)
@@ -48,7 +48,11 @@ struct LifeCycleDemoView: View {
     private var summaryCard: some View {
         HStack(spacing: 16) {
             SummaryItem(title: "出现次数", value: "\(appearCount)", color: .green)
-            SummaryItem(title: "消失次数", value: "\(disappearCount)", color: .orange)
+            SummaryItem(
+                title: "消失次数",
+                value: "\(disappearCount)",
+                color: .orange
+            )
         }
     }
 
@@ -72,15 +76,25 @@ struct LifeCycleDemoView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(log.message)
                                     .font(.body)
-                                Text(log.timestamp.formatted(date: .omitted, time: .standard))
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
+                                Text(
+                                    log.timestamp.formatted(
+                                        date: .omitted,
+                                        time: .standard
+                                    )
+                                )
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                             }
                             .padding()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .background(Color(.systemBackground))
                             .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
+                            .shadow(
+                                color: .black.opacity(0.05),
+                                radius: 4,
+                                x: 0,
+                                y: 2
+                            )
                         }
                     }
                 }
@@ -173,4 +187,3 @@ struct LifecycleLog: Identifiable {
 #Preview {
     LifeCycleDemoView()
 }
-

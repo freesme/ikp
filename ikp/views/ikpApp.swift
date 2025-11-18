@@ -9,6 +9,12 @@ import SwiftUI
 
 @main
 struct ikpApp: App {
+        init() {
+        UserDefaults.standard.register(defaults: [
+            "name": "Taylor Swift",
+            "highScore": 10
+        ])
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

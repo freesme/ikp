@@ -128,7 +128,7 @@ struct StateExamplesView: View {
         ) {
             StateDemoView()
         },
-        
+
         ExamplePage(
             title: "状态控制演示2",
             description: "日期选择器、",
@@ -182,7 +182,7 @@ struct EventExamplesView: View {
             icon: "clock.arrow.2.circlepath"
         ) {
             LifeCycleDemoView()
-        }
+        },
     ]
 
     var body: some View {
@@ -212,7 +212,6 @@ struct EventExamplesView: View {
     }
 }
 
-
 // 主视图
 struct ContentView: View {
     var body: some View {
@@ -229,7 +228,7 @@ struct ContentView: View {
                         )
                     }
                     .buttonStyle(PlainButtonStyle())
-                    
+
                     // State 示例入口
                     NavigationLink(destination: StateExamplesView()) {
                         CategoryCard(
@@ -240,7 +239,7 @@ struct ContentView: View {
                         )
                     }
                     .buttonStyle(PlainButtonStyle())
-                    
+
                     // Event 示例入口
                     NavigationLink(destination: EventExamplesView()) {
                         CategoryCard(
@@ -265,7 +264,7 @@ struct CategoryCard: View {
     let description: String
     let icon: String
     let color: Color
-    
+
     var body: some View {
         HStack(spacing: 16) {
             Image(systemName: icon)
@@ -274,21 +273,21 @@ struct CategoryCard: View {
                 .frame(width: 60, height: 60)
                 .background(color.opacity(0.1))
                 .cornerRadius(12)
-            
+
             VStack(alignment: .leading, spacing: 6) {
                 Text(title)
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
-                
+
                 Text(description)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .lineLimit(2)
             }
-            
+
             Spacer()
-            
+
             Image(systemName: "chevron.right")
                 .foregroundColor(.secondary)
         }
