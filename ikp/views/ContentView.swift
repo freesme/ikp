@@ -165,6 +165,54 @@ struct StateExamplesView: View {
     }
 }
 
+// 状态管理示例列表视图
+struct EventExamplesView: View {
+    // 状态管理示例页面列表
+    let statePages: [ExamplePage] = [
+        ExamplePage(
+            title: "事件示例",
+            description: "onChange",
+            icon: "slider.horizontal.3"
+        ) {
+            EventDemoView()
+        },
+        ExamplePage(
+            title: "生命周期示例",
+            description: "生命周期",
+            icon: "clock.arrow.2.circlepath"
+        ) {
+            LifeCycleDemoView()
+        }
+    ]
+
+    var body: some View {
+        List {
+            Section(header: Text("状态管理")) {
+                ForEach(statePages) { page in
+                    NavigationLink(destination: page.destination) {
+                        HStack {
+                            Image(systemName: page.icon)
+                                .foregroundColor(.green)
+                                .frame(width: 30)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(page.title)
+                                    .font(.headline)
+                                Text(page.description)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+            }
+        }
+        .navigationTitle("State 示例")
+        .listStyle(InsetGroupedListStyle())
+    }
+}
+
+
 // 主视图
 struct ContentView: View {
     var body: some View {
@@ -189,6 +237,17 @@ struct ContentView: View {
                             description: "状态管理、数据绑定等示例",
                             icon: "slider.horizontal.3",
                             color: .green
+                        )
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    // Event 示例入口
+                    NavigationLink(destination: EventExamplesView()) {
+                        CategoryCard(
+                            title: "Event示例",
+                            description: "响应事件示例、用户点击和手势",
+                            icon: "hand.tap",
+                            color: .orange
                         )
                     }
                     .buttonStyle(PlainButtonStyle())
