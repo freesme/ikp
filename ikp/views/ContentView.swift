@@ -88,6 +88,27 @@ struct UIExamplesView: View {
         ) {
             DragGestureView()
         },
+        ExamplePage(
+            title: "Frame & Padding 顺序",
+            description: "展示 Frame 和 Padding 顺序对布局的影响",
+            icon: "rectangle.dashed.and.paperclip"
+        ) {
+            FramePaddingDemoView()
+        },
+        ExamplePage(
+            title: "布局交互",
+            description: "多元素布局竞争与优先级演示",
+            icon: "arrow.up.left.and.down.right.and.arrow.up.right.and.down.left"
+        ) {
+            LayoutInteractionDemoView()
+        },
+        ExamplePage(
+            title: "Stack 组合实战",
+            description: "VStack + HStack + ZStack 复杂布局案例",
+            icon: "square.stack.3d.forward.dottedline"
+        ) {
+            ComplexStackDemoView()
+        },
     ]
 
     var body: some View {
@@ -137,18 +158,25 @@ struct StateExamplesView: View {
             StateDemo2View()
         },
         ExamplePage(
-            title: "状态控制演示3",
-            description: "@ObservedObject",
-            icon: "slider.horizontal.3"
+            title: "@StateObject 示例",
+            description: "StateDemo3View - StateObject 生命周期演示",
+            icon: "cube.box.fill"
         ) {
             StateDemo3View()
         },
         ExamplePage(
-            title: "状态控制演示4",
-            description: "@EnvironmentObjectDemoView",
-            icon: "slider.horizontal.3"
+            title: "@EnvironmentObject 示例",
+            description: "跨层级数据共享演示",
+            icon: "network"
         ) {
             EnvironmentObjectDemoView()
+        },
+        ExamplePage(
+            title: "objectWillChange 示例",
+            description: "手动触发视图更新的高级用法",
+            icon: "waveform.path.ecg"
+        ) {
+            ObjectWillChangeDemoView()
         },
     ]
 
