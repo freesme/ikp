@@ -144,11 +144,11 @@ struct StateExamplesView: View {
             StateDemo3View()
         },
         ExamplePage(
-            title: "状态控制演示3",
-            description: "@ObservedObject",
+            title: "状态控制演示4",
+            description: "@EnvironmentObjectDemoView",
             icon: "slider.horizontal.3"
         ) {
-            StateDemo3View()
+            EnvironmentObjectDemoView()
         },
     ]
 
