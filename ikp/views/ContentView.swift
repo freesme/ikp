@@ -136,6 +136,20 @@ struct StateExamplesView: View {
         ) {
             StateDemo2View()
         },
+        ExamplePage(
+            title: "状态控制演示3",
+            description: "@ObservedObject",
+            icon: "slider.horizontal.3"
+        ) {
+            StateDemo3View()
+        },
+        ExamplePage(
+            title: "状态控制演示3",
+            description: "@ObservedObject",
+            icon: "slider.horizontal.3"
+        ) {
+            StateDemo3View()
+        },
     ]
 
     var body: some View {
